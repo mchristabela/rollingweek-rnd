@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Michelle Christabela Ang",
+    "email": "michelle.ang@binus.ac.id",
+    "event": "techdive",
+    "division": "Human Resource Development",
+    "rating": 2,
+    "comments": "-",
+    "suggestions": "-",
+    "id": "1764131997443",
+    "createdAt": "2025-11-26T04:39:57.443Z",
+    "status": "open"
+  },
+  {
+    "name": "Suryani",
+    "email": "suryani@binus.ac.id",
+    "event": "TechDive",
+    "division": "Public Relations",
+    "rating": 5,
+    "comments": "-",
+    "suggestions": "-",
+    "id": "1764132050412",
+    "createdAt": "2025-11-26T04:40:50.412Z",
+    "status": "open"
+  }
+]

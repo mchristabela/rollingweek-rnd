@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback Admin</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="bg-light">
+    <div class="container mt-5">
+      <h4 class="mb-3">Feedback Admin</h4>
+      <p class="text-muted">Manage and review all feedback submissions</p>
+
+      <div class="d-flex justify-content-between mb-3">
+        <input
+          type="text"
+          id="searchFeedback"
+          class="form-control w-50"
+          placeholder="Search by name, email, event, or division"
+          onkeyup="renderFeedback()"
+        />
+        <button class="btn btn-warning" onclick="refreshPage()">Refresh</button>
+      </div>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Event</th>
+            <th>Division</th>
+            <th>Rating</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="feedbackTable"></tbody>
+      </table>
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center" id="pagination"></ul>
+      </nav>
+    </div>
+
+    <!-- Edit Feedback Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Feedback</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editFeedbackForm">
+              <input type="hidden" id="editFeedbackId" />
+              <div class="mb-3">
+                <label for="editName" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editEmail" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="editEmail"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editEvent" class="form-label">Event Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editEvent"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editDivision" class="form-label">Division</label>
+                <select class="form-select" id="editDivision" required>
+                  <option>Learning & Training</option>
+                  <option>External Event and Operations</option>
+                  <option>Public Relations</option>
+                  <option>Human Resource Development</option>
+                  <option>Research and Development</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="editRating" class="form-label">Rating</label>
+                <div class="star-rating mb-3">
+                  <input
+                    type="radio"
+                    id="editStar5"
+                    name="rating"
+                    value="1"
+                  /><label for="editStar5">★</label>
+                  <input
+                    type="radio"
+                    id="editStar4"
+                    name="rating"
+                    value="2"
+                  /><label for="editStar4">★★</label>
+                  <input
+                    type="radio"
+                    id="editStar3"
+                    name="rating"
+                    value="3"
+                  /><label for="editStar3">★★★</label>
+                  <input
+                    type="radio"
+                    id="editStar2"
+                    name="rating"
+                    value="4"
+                  /><label for="editStar2">★★★★</label>
+                  <input
+                    type="radio"
+                    id="editStar1"
+                    name="rating"
+                    value="5"
+                  /><label for="editStar1">★★★★★</label>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="editStatus" class="form-label">Status</label>
+                <select class="form-select" id="editStatus" required>
+                  <option value="open">Open</option>
+                  <option value="closed">Closed</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="editComments" class="form-label">Comments</label>
+                <textarea
+                  class="form-control"
+                  id="editComments"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="editSuggestions" class="form-label"
+                  >Suggestions</label
+                >
+                <textarea
+                  class="form-control"
+                  id="editSuggestions"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">
+                  Save Changes
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

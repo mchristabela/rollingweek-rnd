@@ -1,0 +1,223 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+.rating-options div {
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+button {
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(90deg, #2374ff, #2575fc);
+  background-size: 200%;
+  background-position: left;
+}
+
+button:hover {
+  background-position: right;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 20px rgba(11, 61, 148, 0.3);
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  left: 50%;
+  top: 50%;
+  transition: 0.4s ease-out;
+}
+
+button:active::after {
+  opacity: 0;
+  transform: scale(22);
+}
+
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 40px;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+  transform: scale(1.15);
+}
+
+.star-rating input:checked ~ label {
+  color: gold;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  60% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.star-rating input:checked + label {
+  animation: bounce 0.3s ease-in-out;
+}
+
+.modal-content h3,
+.modal-content p,
+.modal-content .btn {
+  text-align: center;
+}
+
+.emoji-animate {
+  font-size: 45px;
+  animation: bounce 1.5s infinite ease-in-out, fadeIn 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Custom Star Rating */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.star-rating input {
+  display: none;
+}
+.star-rating label {
+  font-size: 35px;
+  color: lightgray;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.star-rating input:checked ~ label,
+.star-rating input:hover ~ label {
+  color: gold;
+}
+
+/* Helper Sidebar */
+#helperSidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  padding: 20px;
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+#helperSidebar.active {
+  right: 0;
+}
+
+.menu-item .badge {
+  display: none; /* Hide by default */
+}
+
+.helper-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10000;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.helper-btn i {
+  font-size: 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: #f1f1f1;
+}
+
+.menu-item i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.badge {
+  margin-left: auto;
+  background-color: #4caf50;
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Feedback Form</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="bg-light">
+    <!-- 🔵 HELPER BUTTON -->
+    <button id="helperBtn" class="helper-btn">
+      <i class="bi bi-gear"></i> Helper
+    </button>
+
+    <!-- 🔵 HELPER SIDEBAR -->
+    <div id="helperSidebar" class="helper-sidebar">
+      <div class="p-3">
+        <h5 class="fw-bold mb-1">Feedback App</h5>
+        <p class="text-muted small">BNCC Rolling Week Example Project</p>
+        <hr />
+
+        <h6 class="fw-bold mb-2">Pages</h6>
+
+        <!-- Feedback Form -->
+        <div
+          class="menu-item"
+          id="feedbackFormMenu"
+          onclick="location.href='index.html'"
+        >
+          <i class="bi bi-chat-left-text"></i>
+          <div>
+            <strong>Feedback Form</strong><br />
+            <span class="text-muted small">Submit new feedback</span>
+          </div>
+          <span class="badge bg-light text-dark ms-auto" id="activeBadge"
+            >Active</span
+          >
+        </div>
+
+        <!-- Admin Panel -->
+        <div
+          class="menu-item"
+          id="adminPanelMenu"
+          onclick="location.href='admin.html'"
+        >
+          <i class="bi bi-shield-check"></i>
+          <div>
+            <strong>Admin Panel</strong><br />
+            <span class="text-muted small">Manage feedback submissions</span>
+          </div>
+        </div>
+
+        <hr />
+
+        <h6 class="fw-bold">Project Info</h6>
+        <div class="d-flex justify-content-between small">
+          <span>API Docs:</span>
+          <a href="#" class="text-primary">Open Docs</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔵 MAIN CONTENT -->
+    <div class="container mt-5">
+      <div class="card p-4 shadow-sm" style="max-width: 600px; margin: auto">
+        <h4 class="mb-1">Event Feedback Form</h4>
+        <p class="text-muted">Please share your feedback about the event.</p>
+        <hr />
+
+        <form id="feedbackForm">
+          <h6 class="fw-bold">Personal Information</h6>
+
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" required />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Division</label>
+            <select class="form-select" id="division" required>
+              <option disabled selected hidden>Select your division</option>
+              <option>Learning & Training</option>
+              <option>External Event and Operations</option>
+              <option>Public Relations</option>
+              <option>Human Resource Development</option>
+              <option>Research and Development</option>
+            </select>
+          </div>
+
+          <hr />
+
+          <h6 class="fw-bold">Event Information</h6>
+
+          <div class="mb-3">
+            <label class="form-label">Event Name</label>
+            <input type="text" class="form-control" id="event" required />
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Overall Rating</label>
+            <p class="text-muted small mb-1">
+              How would you rate this event overall?
+            </p>
+          </div>
+
+          <div class="star-rating mb-3">
+            <input
+              type="radio"
+              id="star5"
+              name="rating"
+              value="5"
+              required
+            /><label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4" /><label
+              for="star4"
+              >★</label
+            >
+            <input type="radio" id="star3" name="rating" value="3" /><label
+              for="star3"
+              >★</label
+            >
+            <input type="radio" id="star2" name="rating" value="2" /><label
+              for="star2"
+              >★</label
+            >
+            <input type="radio" id="star1" name="rating" value="1" /><label
+              for="star1"
+              >★</label
+            >
+          </div>
+
+          <hr />
+
+          <h6 class="fw-bold">Your Feedback</h6>
+
+          <div class="mb-3">
+            <label class="form-label">Comments</label>
+            <textarea class="form-control" id="comments" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Suggestions</label>
+            <textarea class="form-control" id="suggestions" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">
+            Submit Feedback
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center p-4" style="border-radius: 15px">
+          <h3 class="fw-bold mt-2">Thank You!</h3>
+          <div class="emoji-animate">🎉</div>
+          <p class="text-muted mt-2">
+            Your response has been submitted successfully.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document
+      .getElementById("feedbackForm")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        // Get form data
+        const feedback = {
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          event: document.getElementById("event").value,
+          division: document.getElementById("division").value,
+          rating: parseInt(document.querySelector('input[name="rating"]:checked')?.value),
+          comments: document.getElementById("comments").value,
+          suggestions: document.getElementById("suggestions").value,
+        };
+
+        try {
+          const response = await fetch("http://localhost:3000/api/feedback", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(feedback),
+          });
+
+          if (response.ok) {
+            // Show success modal
+            const modal = new bootstrap.Modal(
+              document.getElementById("successModal")
+            );
+            modal.show();
+
+            // Reset the form after submission
+            setTimeout(() => {
+              modal.hide();
+              this.reset();
+            }, 2500);
+          } else {
+            alert("Failed to submit feedback. Please try again.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error connecting to server. Please make sure the backend is running.");
+        }
+      });
+    </script>
+
+    <script>
+      // Helper Sidebar Toggle
+      document.getElementById("helperBtn").addEventListener("click", () => {
+        document.getElementById("helperSidebar").classList.toggle("active");
+      });
+
+      // JavaScript for setting active class based on current page
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = window.location.pathname;
+
+        const feedbackFormMenu = document.getElementById("feedbackFormMenu");
+        const adminPanelMenu = document.getElementById("adminPanelMenu");
+
+        if (currentPage.includes("index.html")) {
+          feedbackFormMenu.classList.add("active");
+        } else if (currentPage.includes("admin.html")) {
+          adminPanelMenu.classList.add("active");
+        }
+      });
+    </script>
+  </body>
+</html>
