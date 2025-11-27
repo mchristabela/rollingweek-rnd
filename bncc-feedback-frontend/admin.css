@@ -74,6 +74,10 @@ button:hover {
   background-color: #01579b;
 }
 
+.star-rating input {
+  margin-right: 10px;
+}
+
 /* Edit Button and Delete Button */
 .btn-warning {
   background-color: #ffc107;
@@ -174,4 +178,5 @@ button[type="button"]:hover {
   .pagination .page-item {
     font-size: 12px;
   }
+
 }
